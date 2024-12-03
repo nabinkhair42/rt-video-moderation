@@ -11,7 +11,7 @@ export default function Home() {
         <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-8" role="alert">
           <p className="font-bold">Instructions:</p>
           <ol className="list-decimal list-inside">
-            <li>Click the "Start Camera" button to begin the live feed.</li>
+            <li>Click the &rdquo; Start Camera&rdquo; button to begin the live feed.</li>
             <li>The system will automatically analyze frames every 5 seconds.</li>
             <li>Moderation alerts will appear below the video feed.</li>
             <li>Use the controls on the right to take action based on the alerts.</li>
