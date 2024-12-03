@@ -1,50 +1,36 @@
-### **Project Description: Real-Time Live Video Moderation System**  
+# Real-Time Video Moderation System
 
-This project focuses on building a **real-time live video moderation platform** to identify and mitigate harmful visual content. The system ensures streams remain safe and compliant with platform policies, employing advanced AI techniques to detect prohibited objects, violence, explicit visuals, and aggressive behavior. It integrates a sleek, user-friendly dashboard for moderators to monitor and act on flagged streams instantly.
+This project implements a real-time video moderation system using Next.js, React, and the Gemini AI API. It captures frames from a live video stream and analyzes them for potentially inappropriate or harmful content.
 
----
+## Features
 
-### **Core Features**  
-1. **Prohibited Object Recognition**  
-   Detect and flag the presence of weapons, drugs, or other banned items in live streams.  
+- Live video streaming from the user's camera
+- Frame capture every 2 seconds
+- Real-time analysis of captured frames using Gemini AI
+- Dynamic display of moderation results
+- Moderator controls for taking action based on detected issues
 
-2. **Violence Detection**  
-   Identify violent actions such as physical altercations, blood, or aggressive movements.  
+## Technology Stack
 
-3. **Explicit Content Detection**  
-   Instantly spot nudity, sexual content, or inappropriate visuals.  
+- Next.js 13+ with App Router
+- React 18
+- TypeScript
+- Tailwind CSS
+- shadcn/ui components
+- Gemini AI API for content analysis
 
-4. **Emotion Analysis**  
-   Analyze facial expressions and body language to detect aggression or distress.  
+## How It Works
 
-5. **Real-Time Alerts**  
-   Notify moderators of flagged issues with a low-latency alert system.  
+1. The user starts the video stream from their camera.
+2. Every 2 seconds, a frame is captured from the video stream.
+3. The captured frame is sent to the Gemini AI API for analysis.
+4. The API returns a moderation result, including detected issues and severity.
+5. The results are displayed in real-time on the dashboard.
+6. Moderators can take appropriate actions based on the analysis results.
 
-6. **Interactive Moderation Dashboard**  
-   Display live streams with alerts, flagged content highlights, and controls for moderators.  
+## Setup
 
----
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up your Gemini AI API key in the `.env.local` file:
 
-### **Tech Stack**
-
-#### **Frontend**
-- **Next.js**: For building a fast, scalable, and interactive UI for moderators.
-- **ShadCN UI**: For elegant, accessible UI components, including dashboards and alerts.
-- **WebSockets**: For real-time data transfer between server and client.
-
-#### **Backend**
-- **Node.js**: Handles server-side processing and API endpoints.  
-- **Socket.IO**: Provides real-time communication for video feed monitoring and alerts.  
-- **Express.js**: Lightweight framework for managing APIs and requests.  
-
-#### **AI & ML Models**
-- **Gemini AI**: For real-time detection of prohibited objects, violence, explicit content, and emotions.
-
-
-#### **Video Processing**
-- **FFmpeg**: For streaming and frame extraction from live video feeds.  
-- **MediaPipe**: For advanced facial and object recognition.
-
-
-#### **Deployment**
-- **Vercel**: For deploying the Next.js frontend.  

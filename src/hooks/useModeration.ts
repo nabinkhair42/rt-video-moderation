@@ -1,41 +1,46 @@
 'use client'
 
 import { useState } from 'react'
-import { GoogleGenerativeAI } from '@google/generative-ai'
 
-const genAI = new GoogleGenerativeAI('AIzaSyDdlYFPS7iVvGrMuv6CRVsRwIduHsPdOjs')
+interface ModerationResult {
+  issues: string[]
+  summary: string
+  severity: 'low' | 'medium' | 'high'
+}
 
 export function useModeration() {
-  const [moderationResult, setModerationResult] = useState<string | null>(null)
+  const [moderationResult, setModerationResult] = useState<ModerationResult | null>(null)
+  const [isAnalyzing, setIsAnalyzing] = useState(false)
 
-  const analyze = async (imageUrl: string) => {
+  const analyze = async (imageData: string) => {
     try {
-      const model = genAI.getGenerativeModel({ model: 'gemini-pro-vision' })
+      setIsAnalyzing(true)
+      const response = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ imageData }),
+      })
 
-      const result = await model.generateContent([
-        'Analyze this image for prohibited content, violence, explicit content, and aggressive behavior. Provide a brief summary of any issues found.',
-        { inlineData: { data: await fetchImageAsBase64(imageUrl), mimeType: 'image/jpeg' } },
-      ])
+      if (!response.ok) {
+        throw new Error('Failed to analyze frame')
+      }
 
-      const text = result.response.text()
-      setModerationResult(text)
+      const { result } = await response.json()
+      setModerationResult(JSON.parse(result))
     } catch (error) {
-      console.error('Error analyzing image:', error)
-      setModerationResult('Error analyzing image')
+      console.error('Error in moderation analysis:', error)
+      setModerationResult({
+        issues: ['Error in analysis'],
+        summary: 'Failed to analyze the video frame',
+        severity: 'high',
+      })
+    } finally {
+      setIsAnalyzing(false)
     }
   }
 
-  return { moderationResult, analyze }
-}
-
-async function fetchImageAsBase64(url: string): Promise<string> {
-  const response = await fetch(url)
-  const blob = await response.blob()
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onloadend = () => resolve(reader.result as string)
-    reader.onerror = reject
-    reader.readAsDataURL(blob)
-  })
+  return { moderationResult, isAnalyzing, analyze }
 }
 

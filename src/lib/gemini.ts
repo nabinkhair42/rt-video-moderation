@@ -1,18 +1,8 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Initialize the Gemini AI client
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
-// Function to encode an image to base64
-async function encodeImageToBase64(imageUrl: string): Promise<string> {
-  const response = await fetch(imageUrl);
-  const arrayBuffer = await response.arrayBuffer();
-  const base64 = Buffer.from(arrayBuffer).toString('base64');
-  return `data:${response.headers.get('content-type') || 'image/jpeg'};base64,${base64}`;
-}
-
-// Main function to analyze video frame
-export async function analyzeVideoFrame(imageUrl: string): Promise<string> {
+export async function analyzeVideoFrame(imageData: string): Promise<string> {
   try {
     const model = genAI.getGenerativeModel({ model: 'gemini-pro-vision' });
 
@@ -32,13 +22,11 @@ export async function analyzeVideoFrame(imageUrl: string): Promise<string> {
       }
     `;
 
-    const base64Image = await encodeImageToBase64(imageUrl);
-
     const result = await model.generateContent([
       prompt,
       {
         inlineData: {
-          data: base64Image,
+          data: imageData.split(',')[1],
           mimeType: 'image/jpeg'
         }
       }
