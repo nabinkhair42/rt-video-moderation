@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### **Project Description: Real-Time Live Video Moderation System**  
 
-## Getting Started
+This project focuses on building a **real-time live video moderation platform** to identify and mitigate harmful visual content. The system ensures streams remain safe and compliant with platform policies, employing advanced AI techniques to detect prohibited objects, violence, explicit visuals, and aggressive behavior. It integrates a sleek, user-friendly dashboard for moderators to monitor and act on flagged streams instantly.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### **Core Features**  
+1. **Prohibited Object Recognition**  
+   Detect and flag the presence of weapons, drugs, or other banned items in live streams.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Violence Detection**  
+   Identify violent actions such as physical altercations, blood, or aggressive movements.  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Explicit Content Detection**  
+   Instantly spot nudity, sexual content, or inappropriate visuals.  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **Emotion Analysis**  
+   Analyze facial expressions and body language to detect aggression or distress.  
 
-## Learn More
+5. **Real-Time Alerts**  
+   Notify moderators of flagged issues with a low-latency alert system.  
 
-To learn more about Next.js, take a look at the following resources:
+6. **Interactive Moderation Dashboard**  
+   Display live streams with alerts, flagged content highlights, and controls for moderators.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Tech Stack**
 
-## Deploy on Vercel
+#### **Frontend**
+- **Next.js**: For building a fast, scalable, and interactive UI for moderators.
+- **ShadCN UI**: For elegant, accessible UI components, including dashboards and alerts.
+- **WebSockets**: For real-time data transfer between server and client.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### **Backend**
+- **Node.js**: Handles server-side processing and API endpoints.  
+- **Socket.IO**: Provides real-time communication for video feed monitoring and alerts.  
+- **Express.js**: Lightweight framework for managing APIs and requests.  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### **AI & ML Models**
+- **Gemini AI**: For real-time detection of prohibited objects, violence, explicit content, and emotions.
+
+
+#### **Video Processing**
+- **FFmpeg**: For streaming and frame extraction from live video feeds.  
+- **MediaPipe**: For advanced facial and object recognition.
+
+
+#### **Deployment**
+- **Vercel**: For deploying the Next.js frontend.  
