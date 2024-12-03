@@ -70,3 +70,15 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+body {
+  @apply bg-background text-foreground;
+  background-image:
+    radial-gradient(100% 50% at 50% 0%, rgba(255, 51, 0, 0.137) 5%, rgba(255, 94, 0, 0.048) 50%, rgba(0, 163, 255, 0) 100%);
+  
+  background-size:
+    100%,
+    14px 24px,
+    14px 24px;
+
+}

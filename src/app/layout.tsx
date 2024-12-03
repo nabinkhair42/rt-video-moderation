@@ -1,3 +1,4 @@
+import Footer from '@/components/ui/footer'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -16,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>{children}</body>
+      <body className={inter.className} suppressHydrationWarning>{children}
+
+        <Footer />
+      </body>
     </html>
   )
 }
