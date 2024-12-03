@@ -10,7 +10,7 @@ A system designed to analyze live video streams for harmful or inappropriate con
 - **Moderator Controls**: Options to warn, mute, flag, escalate, or ban based on severity.
 
 ### **Tech Stack:**
-- **Next.js 13+, React, TypeScript, Tailwind CSS**: For building the frontend.
+- **Next.js 14+, React, TypeScript, Tailwind CSS**: For building the frontend.
 - **Gemini AI API**: For content analysis.
 
 This system is ideal for live-streaming platforms and virtual events to ensure safe and appropriate content.
