@@ -4,7 +4,7 @@ import { analyzeVideoFrame } from '@/lib/gemini'
 export async function POST(request: Request) {
   try {
     const { imageData } = await request.json()
-    
+
     if (!imageData) {
       return NextResponse.json(
         { error: 'Image data is required' },
@@ -15,11 +15,10 @@ export async function POST(request: Request) {
     const result = await analyzeVideoFrame(imageData)
     return NextResponse.json({ result })
   } catch (error) {
-    console.error('Error in analyze route:', error)
+    console.error('Analyze route error:', error)
     return NextResponse.json(
-      { error: 'Failed to analyze video frame' },
+      { error: 'Frame analysis failed' },
       { status: 500 }
     )
   }
 }
-

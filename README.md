@@ -1,36 +1,20 @@
-# Real-Time Video Moderation System
+### **Real-Time Video Moderation System**
 
-This project implements a real-time video moderation system using Next.js, React, and the Gemini AI API. It captures frames from a live video stream and analyzes them for potentially inappropriate or harmful content.
+A system designed to analyze live video streams for harmful or inappropriate content using AI. It captures frames every 2 seconds, sends them to Gemini AI for analysis, and provides moderators with tools to take action.
 
-## Features
+### **Key Features:**
+- **Live Video Streaming**: Stream from your webcam in real-time.
+- **Frame Capture**: Captures frames every 2 seconds for analysis.
+- **AI Content Moderation**: Sends captured frames to Gemini AI for detecting prohibited content.
+- **Real-Time Alerts**: Display moderation results dynamically (e.g., issues and severity).
+- **Moderator Controls**: Options to warn, mute, flag, escalate, or ban based on severity.
 
-- Live video streaming from the user's camera
-- Frame capture every 2 seconds
-- Real-time analysis of captured frames using Gemini AI
-- Dynamic display of moderation results
-- Moderator controls for taking action based on detected issues
+### **Tech Stack:**
+- **Next.js 13+, React, TypeScript, Tailwind CSS**: For building the frontend.
+- **Gemini AI API**: For content analysis.
 
-## Technology Stack
+This system is ideal for live-streaming platforms and virtual events to ensure safe and appropriate content.
 
-- Next.js 13+ with App Router
-- React 18
-- TypeScript
-- Tailwind CSS
-- shadcn/ui components
-- Gemini AI API for content analysis
 
-## How It Works
 
-1. The user starts the video stream from their camera.
-2. Every 2 seconds, a frame is captured from the video stream.
-3. The captured frame is sent to the Gemini AI API for analysis.
-4. The API returns a moderation result, including detected issues and severity.
-5. The results are displayed in real-time on the dashboard.
-6. Moderators can take appropriate actions based on the analysis results.
-
-## Setup
-
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Set up your Gemini AI API key in the `.env.local` file:
-
+### Developed by inexperienced developer.

@@ -52,7 +52,7 @@ export default function VideoStream({ onFrameCapture }: VideoStreamProps) {
           const ctx = canvasRef.current.getContext('2d')
           if (ctx) {
             ctx.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
-            const imageData = canvasRef.current.toDataURL('image/jpeg')
+            const imageData = canvasRef.current.toDataURL('image/jpeg');
             onFrameCapture(imageData)
           }
         }

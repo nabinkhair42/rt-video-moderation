@@ -1,46 +1,43 @@
-'use client'
-
-import { useState } from 'react'
+import { useState } from "react";
 
 interface ModerationResult {
-  issues: string[]
-  summary: string
-  severity: 'low' | 'medium' | 'high'
+  issues: string[];
+  summary: string;
+  severity: "low" | "medium" | "high";
 }
 
 export function useModeration() {
-  const [moderationResult, setModerationResult] = useState<ModerationResult | null>(null)
-  const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [moderationResult, setModerationResult] =
+    useState<ModerationResult | null>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const analyze = async (imageData: string) => {
     try {
-      setIsAnalyzing(true)
-      const response = await fetch('/api/analyze', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      setIsAnalyzing(true);
+      const response = await fetch("/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ imageData }),
-      })
+      });
 
       if (!response.ok) {
-        throw new Error('Failed to analyze frame')
+        throw new Error("Analysis request failed");
       }
 
-      const { result } = await response.json()
-      setModerationResult(JSON.parse(result))
+      const { result } = await response.json();
+      const parsedResult = JSON.parse(result); // Safely parse the JSON
+      setModerationResult(parsedResult);
     } catch (error) {
-      console.error('Error in moderation analysis:', error)
+      console.error("Moderation analysis error:", error);
       setModerationResult({
-        issues: ['Error in analysis'],
-        summary: 'Failed to analyze the video frame',
-        severity: 'high',
-      })
+        issues: ["Analysis error"],
+        summary: "Could not complete frame analysis",
+        severity: "high",
+      });
     } finally {
-      setIsAnalyzing(false)
+      setIsAnalyzing(false);
     }
-  }
+  };
 
-  return { moderationResult, isAnalyzing, analyze }
+  return { moderationResult, isAnalyzing, analyze };
 }
-
