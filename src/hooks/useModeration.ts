@@ -25,6 +25,7 @@ export function useModeration() {
       }
 
       const { result } = await response.json();
+      console.log("Moderation analysis result:", result);
       const parsedResult = JSON.parse(result); // Safely parse the JSON
       setModerationResult(parsedResult);
     } catch (error) {

@@ -3,11 +3,11 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { Loader2 } from 'lucide-react'
 import VideoStream from './VideoStream'
 import ModeratorControls from './ModeratorControls'
 import { useModeration } from '@/hooks/useModeration'
-
+import Loading from '@/components/Loading'
+import { Badge } from '@/components/ui/badge'
 export default function Dashboard() {
   const { moderationResult, isAnalyzing, analyze } = useModeration()
   const [isStreaming, setIsStreaming] = useState(false)
@@ -24,7 +24,7 @@ export default function Dashboard() {
           <CardTitle className="flex items-center gap-2">
             Live Video Feed
             {isAnalyzing && (
-              <Loader2 className="h-4 w-4 animate-spin" />
+            <Loading/>
             )}
           </CardTitle>
         </CardHeader>
@@ -45,14 +45,9 @@ export default function Dashboard() {
             >
               <AlertTitle className="flex items-center gap-2">
                 Moderation Alert
-                <span className={`
-                  px-2 py-1 rounded-full text-xs
-                  ${moderationResult.severity === 'high' ? 'bg-destructive text-destructive-foreground' : 
-                    moderationResult.severity === 'medium' ? 'bg-yellow-500 text-yellow-50' : 
-                    'bg-green-500 text-green-50'}
-                `}>
-                  {moderationResult.severity.toUpperCase()}
-                </span>
+                <Badge variant={moderationResult.severity === 'high' ? 'destructive' : 'default'}>
+                  {moderationResult.severity}
+                </Badge>
               </AlertTitle>
               <AlertDescription className="mt-2">
                 <div className="space-y-2">

@@ -24,7 +24,7 @@ export async function analyzeVideoFrame(imageData: string): Promise<string> {
       prompt,
       {
         inlineData: {
-          data: imageData.split(',')[1], // Remove "data:image/jpeg;base64,"
+          data: imageData.split(',')[1],
           mimeType: 'image/jpeg',
         },
       },
